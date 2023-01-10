@@ -3,13 +3,13 @@ const dotenv = require('dotenv')
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require('body-parser');
-// const upload = require('./upload');
 const dbConnection = require('./dbConfig');
 const morgan = require("morgan");
 const dashboardRoute = require("./routers/dashboardRoute")
 
 
 
+// const fileUpload = require('express-fileupload');
 
 
 var app = express()
@@ -29,6 +29,8 @@ app.use(
 dotenv.config()
 // app.use(express.json());
 
+
+// app.use(fileUpload());
 
 app.use(morgan("dev"));
 
@@ -56,14 +58,14 @@ app.post("/api",(req,res)=>{
 // upload.single("image"),
 
 
-app.post("/admin/addProduct", async(req,res)=>{
-  console.log(req);
-  // res.json({message:"success",data:vv})
-  // let data = await  cloudinary.uploader.upload(req.file.path)
+// app.post("/admin/addProduct", async(req,res)=>{
+//   console.log(req);
+//   // res.json({message:"success",data:vv})
+//   // let data = await  cloudinary.uploader.upload(req.file.path)
   
-  // res.json({message:"success",data:data})
+//   // res.json({message:"success",data:data})
  
-})
+// })
 
 
 // dashboard route
