@@ -4,7 +4,6 @@ const product = new mongoose.Schema({
     product: {
         type: String,
         required: true,
-        unique: [true,'Already added'],
     },
     category:{
         type: String,

@@ -1,9 +1,17 @@
 const productSchema = require("../../models/productModal");
 const cloudinary = require('cloudinary').v2;
-
+// var multer = require("multer");
+// var express = require("express");
+// var multerGoogleStorage = require("multer-cloud-storage");
+// var app = express();
 const dotenv = require('dotenv')
 dotenv.config()
 
+
+
+// exports.uploadHandler = multer({
+//   storage: multerGoogleStorage.storageEngine()
+// });
 
 cloudinary.config({ 
   cloud_name: process.env.cloud_name, 
@@ -12,13 +20,29 @@ cloudinary.config({
   secure: true
 });
 
-const setProduct = async (req, res) => {
+const setProduct =  async (req, res) => {
   try {
     const {category,product,rate,quantity} = req.body
-    console.log(req.body);
-    console.log(req.file);
+    // console.log(req.body);
+    // console.log(req.file);
+    // console.log(req.files.image.data.toString('base64'));
+// 
+//     const data1 = {
+//       fieldname: 'file',
+//       originalname: req.files.image.name,
+//       encoding: req.files.image.encoding,
+//       mimetype: req.files.image.mimetype,
+//       buffer: req.files.image.data,
+//       size: req.files.image.size
+// };
+
+// var text = req.files.image.toString(req.files.image,'utf8')
+// var obj = JSON.parse(text)
+// console.log(obj);
+
+
     let imageUpload = await  cloudinary.uploader.upload(req.file.path)
-    console.log(imageUpload.secure_url);
+    // console.log(imageUpload.secure_url);
     let data = await productSchema.create({
       category,
       product,
@@ -44,3 +68,22 @@ const setProduct = async (req, res) => {
 };
 
 module.exports = setProduct;
+
+
+
+
+
+
+
+
+
+
+
+
+// let binary = Buffer.from(req.files.image); //or Buffer.from(data, 'binary')
+// let imgData = new Blob(binary.buffer, { type: 'application/octet-binary' });
+// let link = URL.createObjectURL(imgData);
+// console.log(link);
+
+
+// data.toString('base64')
