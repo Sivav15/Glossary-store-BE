@@ -9,7 +9,7 @@ const dashboardRoute = require("./routers/dashboardRoute")
 
 
 
-// const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload');
 
 
 var app = express()
@@ -30,7 +30,7 @@ dotenv.config()
 // app.use(express.json());
 
 
-// app.use(fileUpload());
+app.use(fileUpload());
 
 app.use(morgan("dev"));
 

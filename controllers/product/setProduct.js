@@ -22,9 +22,9 @@ cloudinary.config({
 
 const setProduct =  async (req, res) => {
   try {
-    const {category,product,rate,quantity} = req.body
+    const {category,product,rate,quantity,unit} = req.body
     // console.log(req.body);
-    // console.log(req.file);
+    // console.log(req.files.image.data);
     // console.log(req.files.image.data.toString('base64'));
 // 
 //     const data1 = {
@@ -41,14 +41,15 @@ const setProduct =  async (req, res) => {
 // console.log(obj);
 
 
-    let imageUpload = await  cloudinary.uploader.upload(req.file.path)
+    // let imageUpload = await  cloudinary.uploader.upload(req.file.path)
     // console.log(imageUpload.secure_url);
     let data = await productSchema.create({
       category,
       product,
       rate,
       quantity,
-      image : imageUpload.secure_url
+      unit,
+      image : req.files.image,
     });
     if (data._id) {
       res.status(201).json({

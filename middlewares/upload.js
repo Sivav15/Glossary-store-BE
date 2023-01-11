@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage:storage,
     fileFilter:(req,file,callback)=>{
-if(file.mimetype == "image/png" || file.mimetype == "image/ipg"){
+if(file.mimetype == "image/png" || file.mimetype == "image/webp"){
     callback(null,true)
 }else{
     console.log("only jpg & png files support!");

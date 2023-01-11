@@ -5,9 +5,9 @@ const setCategory = require("../controllers/category/setCategory");
 const deleteCategory = require("../controllers/category/deleteCategory");
 const setProduct = require('../controllers/product/setProduct');
 const upload = require('../middlewares/upload');
+const getProduct = require('../controllers/product/getProduct');
 
 const router = express.Router();
-
 
 // Category route
 router.post("/setCategory",setCategory);
@@ -16,9 +16,12 @@ router.get("/getCategory/:q",getCategory);
 router.put("/editCategory",editCategory);
 router.delete("/deleteCategory/:id",deleteCategory);
 
-//Product route
+// ,upload.single("image")
 
-router.post("/addProduct",upload.single("image"),setProduct);
+//Product route
+router.post("/addProduct",setProduct);
+router.get("/getProduct",getProduct);
+router.get("/getProduct/:q",getProduct);
 
 
 

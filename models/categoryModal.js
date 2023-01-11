@@ -5,6 +5,7 @@ const Categorys = new mongoose.Schema({
         type: String,
         required: true,
         unique: [true,'Already added'],
+        trim:true,
     },
     createdAt: {
         type: Date,

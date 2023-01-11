@@ -4,21 +4,30 @@ const product = new mongoose.Schema({
     product: {
         type: String,
         required: true,
+        trim:true,
     },
     category:{
         type: String,
         required: true,
+        trim:true,
     },
     rate:{
         type: Number,
         required: true,
+        trim:true,
     },
     quantity:{
         type: Number,
         required: true,
+        trim:true,
+    },
+    unit   : {
+        type: String,
+        required: true,
+        trim:true,
     },
     image:{
-        type: String,
+        type: Object,
         required: true,
     },
 
