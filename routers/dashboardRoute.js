@@ -6,6 +6,8 @@ const deleteCategory = require("../controllers/category/deleteCategory");
 const setProduct = require('../controllers/product/setProduct');
 const upload = require('../middlewares/upload');
 const getProduct = require('../controllers/product/getProduct');
+const editProduct = require('../controllers/product/editProduct');
+const deleteProduct = require('../controllers/product/deleteProduct');
 
 const router = express.Router();
 
@@ -22,6 +24,9 @@ router.delete("/deleteCategory/:id",deleteCategory);
 router.post("/addProduct",setProduct);
 router.get("/getProduct",getProduct);
 router.get("/getProduct/:q",getProduct);
+router.put("/editProduct",editProduct);
+router.delete("/deleteProduct/:id",deleteProduct);
+
 
 
 

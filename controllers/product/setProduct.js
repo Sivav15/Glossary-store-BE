@@ -55,15 +55,10 @@ const setProduct =  async (req, res) => {
       res.status(201).json({
         message: "Product added successfull",
       });
-    } else {
-      res.status(400).json({
-        message: "Product added failled",
-      });
-    }
+    } 
   } catch (error) {
-    console.log(error);
     res.status(500).json({
-      message: error.message,
+      message: "Product added failled",
     });
   }
 };

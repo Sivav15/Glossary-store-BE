@@ -8,14 +8,10 @@ const deleteCategory = async (req, res) => {
       res.status(200).json({
         message: "Category delete successfull",
       });
-    } else {
-      res.status(400).json({
-        message: "Category delete failled",
-      });
-    }
+    } 
   } catch (error) {
     res.status(500).json({
-      message: "Server error",
+      message: "Category delete failled",
     });
   }
 };

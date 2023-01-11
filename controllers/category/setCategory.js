@@ -6,21 +6,17 @@ const setCategory = async (req, res) => {
     const { category } =req.body;
     // let value = await categorySchema.find({category : category});
   
-   let v = category.name.trim()[0].toUpperCase() + category.name.slice(1).toLowerCase()
-console.log(v);
+//    let v = category.name.trim()[0].toUpperCase() + category.name.slice(1).toLowerCase()
+// console.log(v);
     let data = await categorySchema.create(req.body);
     if (data._id) {
       res.status(201).json({
         message: "Category added successfull",
       });
-    } else {
-      res.status(400).json({
-        message: "Category added failled",
-      });
-    }
+    } 
   } catch (error) {
     res.status(500).json({
-      message: error.message,
+      message: "Category added failled",
     });
   }
 };
