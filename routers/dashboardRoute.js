@@ -8,25 +8,39 @@ const upload = require('../middlewares/upload');
 const getProduct = require('../controllers/product/getProduct');
 const editProduct = require('../controllers/product/editProduct');
 const deleteProduct = require('../controllers/product/deleteProduct');
+const authentication = require('../middlewares/authentication');
+const { dashboardOverview, dashboardProduct, user, orderDetails } = require('../controllers/dashboard');
 
 const router = express.Router();
 
 // Category route
-router.post("/setCategory",setCategory);
+router.post("/setCategory",authentication,setCategory);
 router.get("/getCategory",getCategory);
 router.get("/getCategory/:q",getCategory);
-router.put("/editCategory",editCategory);
-router.delete("/deleteCategory/:id",deleteCategory);
+router.put("/editCategory",authentication,editCategory);
+router.delete("/deleteCategory/:id",authentication,deleteCategory);
 
 // ,upload.single("image")
 
 //Product route
-router.post("/addProduct",setProduct);
+router.post("/addProduct",authentication,setProduct);
 router.get("/getProduct",getProduct);
 router.get("/getProduct/:q",getProduct);
-router.put("/editProduct",editProduct);
-router.delete("/deleteProduct/:id",deleteProduct);
+router.put("/editProduct",authentication,editProduct);
+router.delete("/deleteProduct/:id",authentication,deleteProduct);
 
+
+// dashboard route
+
+router.get("/dashboardOverview",dashboardOverview);
+router.get("/dashboardProduct",dashboardProduct);
+router.get("/order-details",orderDetails);
+
+
+
+// user details & order details
+
+router.get("/user",user);
 
 
 

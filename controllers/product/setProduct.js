@@ -22,9 +22,9 @@ cloudinary.config({
 
 const setProduct =  async (req, res) => {
   try {
-    const {category,product,rate,quantity,unit} = req.body
+    const {category,product,amount,quantity,unit} = req.body
     // console.log(req.body);
-    // console.log(req.files.image.data);
+    // console.log(req.files.image);
     // console.log(req.files.image.data.toString('base64'));
 // 
 //     const data1 = {
@@ -40,16 +40,22 @@ const setProduct =  async (req, res) => {
 // var obj = JSON.parse(text)
 // console.log(obj);
 
+let dataUrl = Buffer.from(req.files.image.data).toString('base64')
 
-    // let imageUpload = await  cloudinary.uploader.upload(req.file.path)
-    // console.log(imageUpload.secure_url);
+let url = `data:${req.files.image.mimetype};base64,${dataUrl}`
+
+    let imageUpload = await  cloudinary.uploader.upload(url,{ folder: "glossaryProducts" })
+    console.log(imageUpload);
     let data = await productSchema.create({
       category,
       product,
-      rate,
+      amount,
       quantity,
       unit,
-      image : req.files.image,
+      dummyTotal:amount,
+      image :imageUpload.secure_url,
+      public_id: imageUpload.public_id,
+      availableInStock : quantity,
     });
     if (data._id) {
       res.status(201).json({
@@ -57,6 +63,7 @@ const setProduct =  async (req, res) => {
       });
     } 
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({
       message: "Product added failled",
     });

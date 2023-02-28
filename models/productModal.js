@@ -4,37 +4,60 @@ const product = new mongoose.Schema({
     product: {
         type: String,
         required: true,
-        trim:true,
+        trim: true,
     },
-    category:{
+    category: {
         type: String,
         required: true,
-        trim:true,
+        trim: true,
     },
-    rate:{
+    amount: {
         type: Number,
         required: true,
-        trim:true,
+        trim: true,
     },
-    quantity:{
+    quantity: {
         type: Number,
         required: true,
-        trim:true,
+        trim: true,
     },
-    unit   : {
+    unit: {
         type: String,
         required: true,
-        trim:true,
+        trim: true,
     },
-    image:{
-        type: Object,
+    image: {
+        type: String,
         required: true,
     },
-
+    sold: {
+        type: Number,
+        default: 0,
+        trim: true,
+    },
+    availableInStock: {
+        type: Number,
+        default: 0,
+        trim: true,
+    },
+    dummyQuantity: {
+        type: Number,
+        default: 1,
+        trim: true,
+    },
+    dummyTotal: {
+        type: Number,
+        default: 0,
+        trim: true,
+    },
+   
     createdAt: {
         type: Date,
         default: Date.now,
     },
+    public_id:{
+        type: String,
+    }
 });
 
 const productSchema = mongoose.model("products", product);
