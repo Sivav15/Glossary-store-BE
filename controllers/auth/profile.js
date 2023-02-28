@@ -5,9 +5,9 @@ const imageToBase64 = require('image-to-base64');
 const bcrypt = require("bcryptjs");
 dotenv.config()
 cloudinary.config({ 
-  cloud_name: process.env.cloud_name, 
-  api_key: process.env.api_key, 
-  api_secret: process.env.api_secret,
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET,
   secure: true
 });
 
@@ -60,7 +60,7 @@ const profilePic = async(req,res)=>{
             const {name,mobile,id} = req.body;
             console.log(id);
             let user = await UserSchema.findById({_id : id})
-            console.log(user);
+            // console.log(user);
             user.name = name;
             user.mobile = mobile;
             await user.save();
