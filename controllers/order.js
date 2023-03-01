@@ -5,6 +5,7 @@ const cron = require('node-cron');
 const fs1 = require("fs");
 const fs = require('fs/promises');
 const { otp } = require("./sendSms");
+const Timer = require("./timer");
 // import { access } from 'fs/promises';
 // import { constants } from 'fs';
 
@@ -33,6 +34,7 @@ const order = async (req, res) => {
         
         orderPlace(order._id,order.orderDate,order.paymentMode,order.address,order.orderItems)
         calling(order._id)
+        timer.start();
         res.status(201).json({
             message : "Order success"
         })
@@ -123,16 +125,19 @@ const deliveryArr = async()=>{
        } else {
 
            const info = JSON.parse(data);
-           info.forEach(async (item) => {
-               // console.log(item.id);
-               let order = await orderSchema.findById(item.id);
-               console.log(order);
-               console.log("sivanathan",order.isdelivery);
-               order.isdelivery = true;
-               order.deliveryTime = `${day}/${month}/${year},${time}`;
-               sendInvoice(item.id)
-               await order.save();
-           });
+           if(info.length > 0){
+            info.forEach(async (item) => {
+                let order = await orderSchema.findById(item.id);
+                order.isdelivery = true;
+                order.deliveryTime = `${day}/${month}/${year},${time}`;
+                sendInvoice(item.id)
+                await order.save();
+            });
+           }else{
+            console.log("info",info);
+            timer.stop();
+               console.log("interver stop");
+           }
 
            let vv = info.filter((item) => item.id != item.id);
            fs1.writeFile('controllers/data.json', JSON.stringify(vv), (e) => {
@@ -147,15 +152,11 @@ const deliveryArr = async()=>{
    })
 }
 
-
-
-
-setInterval(()=>{
+const timer = new Timer(function() {
+    console.log("interver start");
     deliveryArr()
-      console.log('running a task every minute');
-},30000)
+}, 10000);
 
-// sendInvoice()
 // cron.schedule('* * * * * *', async() => {
   
 //     // calling()
