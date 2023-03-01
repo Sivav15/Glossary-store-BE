@@ -155,7 +155,7 @@ const deliveryArr = async()=>{
 const timer = new Timer(function() {
     console.log("interver start");
     deliveryArr()
-}, 10000);
+}, 100000);
 
 // cron.schedule('* * * * * *', async() => {
   
