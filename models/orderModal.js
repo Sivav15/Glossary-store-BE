@@ -29,7 +29,7 @@ const order = new mongoose.Schema(
         },
         deliveryTime : {
             type : String,
-            default : "1 hour",
+            default : "5 minitus",
            
         },
         createdAt: { type: Date, default: Date.now }
