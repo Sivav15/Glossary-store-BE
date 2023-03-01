@@ -51,7 +51,7 @@ const orderPlace = async (id, date, mode, addresss) => {
 };
 
 const sendInvoice = async (id) => {
-  let query = "63e0990f4b7e234e3568a70f" || id;
+  let query = id;
   let order = await orderSchema.findById(query);
 
   const { orderItems, address, orderDate, paymentMode, amount } = order;

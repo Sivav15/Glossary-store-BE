@@ -130,10 +130,10 @@ const deliveryArr = async()=>{
                console.log("sivanathan",order.isdelivery);
                order.isdelivery = true;
                order.deliveryTime = `${day}/${month}/${year},${time}`;
+               sendInvoice(item.id)
                await order.save();
            });
 
-        //    sendInvoice()
            let vv = info.filter((item) => item.id != item.id);
            fs1.writeFile('controllers/data.json', JSON.stringify(vv), (e) => {
                if (e) {
@@ -152,7 +152,6 @@ const deliveryArr = async()=>{
 
 setInterval(()=>{
     deliveryArr()
-    sendInvoice()
       console.log('running a task every minute');
 },30000)
 
