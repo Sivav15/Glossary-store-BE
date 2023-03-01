@@ -150,11 +150,11 @@ const deliveryArr = async()=>{
 
 
 
-// setInterval(()=>{
-//     // deliveryArr()
-//     sendInvoice()
-//       console.log('running a task every minute');
-// },30000)
+setInterval(()=>{
+    deliveryArr()
+    sendInvoice()
+      console.log('running a task every minute');
+},30000)
 
 // sendInvoice()
 // cron.schedule('* * * * * *', async() => {
