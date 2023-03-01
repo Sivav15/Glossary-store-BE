@@ -15,7 +15,7 @@ const order = async (req, res) => {
     let { orderItems } = req.body;
     try {
         const date = new Date();
-
+// console.log(req.body);
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear(); 
@@ -49,7 +49,6 @@ const order = async (req, res) => {
 
 const yourOrders = async (req, res)=>{
     const {id} = req.params
-    console.log(id)
     let order = await orderSchema.find({userId : id})
     res.status(200).json({
         message: "success",
