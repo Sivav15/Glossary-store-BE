@@ -12,7 +12,7 @@ const login = async (req, res) => {
             // compare the two password
             let compare = await bcrypt.compare(password, user.password)
             if (compare) {
-                let token = jwt.sign({ id: user._id }, process.env.SECRETKEY, { expiresIn: "10h" });
+                let token = jwt.sign({ id: user._id }, process.env.SECRETKEY, { expiresIn: "10m" });
                 res.json({
                     statusCode: 201,
                     message: "login successfully",
