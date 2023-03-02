@@ -1,7 +1,7 @@
 const orderSchema = require("../models/orderModal");
 const productSchema = require("../models/productModal");
 const {orderPlace, sendInvoice} = require("./sendMail");
-const cron = require('node-cron');
+// const cron = require('node-cron');
 const fs1 = require("fs");
 const fs = require('fs/promises');
 const { otp } = require("./sendSms");
