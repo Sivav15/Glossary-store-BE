@@ -52,7 +52,7 @@ const user = new mongoose.Schema(
         },
         image : {
             type : String,
-            default :'https://res.cloudinary.com/dxkyqflgr/image/upload/v1677079949/profile/kuvc1dqthnxcltw5cgsu.png'
+            default :"https://res.cloudinary.com/dxkyqflgr/image/upload/v1677569293/profile/gm354elzluwisllrx8tn.png"
         },
         public_id : {
             type : String,
