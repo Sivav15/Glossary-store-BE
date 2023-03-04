@@ -38,7 +38,7 @@ try {
 
      saveOtpBackend(email,otp)
     res.status(200).json({
-      message : "Otp send successfull"
+      message : "Otp resend successful"
     })
 } catch (error) {
   console.log(error);
