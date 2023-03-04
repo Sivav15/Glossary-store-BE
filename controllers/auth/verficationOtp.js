@@ -6,10 +6,10 @@ const verificationOtp = async(req,res)=>{
  try {
     const {otp,data} = req.body;
     let email = data.email;
-    let orginalOtp = 2000
-         let oldOtp =   await getOtpBackend(email)
-         console.log(oldOtp);
-        if(Number(otp) === Number(oldOtp)){
+    
+         let {orginalOtp,info} =   await getOtpBackend(email)
+        if(Number(otp) === Number(orginalOtp)){
+          removeOtpBackend(email,info)
             return await register(data,res)
             res.status(200).json({message : "Otp verified successfull"})
         }else{
@@ -26,17 +26,25 @@ const getOtpBackend = async(email)=>{
 
   var getData = fs.readFileSync('controllers/auth/otp.json');  
   const info = JSON.parse(getData);
-  let v = await info.filter((item)=> {
+  let v = await info.map((item)=> {
    if(item.email == email){
-       console.log(item.otp);
         orginalOtp = item.otp
-       return item.email != email
+        return;
    }
-  return item
   })
-  setTimeout(()=>{
-    fs.writeFileSync('controllers/auth/otp.json',JSON.stringify(v))
-  })
-  return orginalOtp ;
+  return {orginalOtp,info} ;
 }
   
+
+const removeOtpBackend = async(email,info)=>{
+  let v = await info.filter((item)=> {
+    if(item.email == email){
+        return false
+    }
+   return item
+   })
+    // setTimeout(()=>{
+      fs.writeFileSync('controllers/auth/otp.json',JSON.stringify(v))
+    // },8000)
+
+}
