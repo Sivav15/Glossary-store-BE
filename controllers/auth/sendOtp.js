@@ -20,11 +20,11 @@ try {
     let details = {
       from: "sivanathanv36@gmail.com", // sender address
       to: `${email}`, // list of receivers
-      subject: "Confirm your mail id", // Subject line
+      subject: "Activate your Email Address", // Subject line
       text: `Verfication`, // plain text body
       // html: "<b>Hello world?</b>", // html body
       html: `
-          <div style="display: flex; justify-content: center;border: 1px solid green; border-radius: 10px;padding: 15px;background-color: green;">
+          <div style="display: flex; justify-content: center;border: 1px solid green; border-radius: 10px;padding: 15px;">
           <div>
               <h2> Your account activate OTP is ${otp} and this otp validation one time</h2>
               
