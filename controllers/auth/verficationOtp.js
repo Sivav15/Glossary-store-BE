@@ -36,7 +36,7 @@ const getOtpBackend = async(email)=>{
   })
   setTimeout(()=>{
     fs.writeFileSync('controllers/auth/otp.json',JSON.stringify(v))
-  },5000)
+  })
   return orginalOtp ;
 }
   
