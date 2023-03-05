@@ -5,7 +5,7 @@ const  UserSchema  = require("../../models/userModel");
 const login = async (req, res) => {
  
     try {
-        const start = Date.now();
+        // const start = Date.now();
         let { email, password } = req.body;
         // first to check the email in database
         let user = await UserSchema.findOne({ email: email });
@@ -36,8 +36,8 @@ const login = async (req, res) => {
                 message: "Invaild Email "
             })
         }
-        const end = Date.now();
-console.log(`Execution time: ${end - start} ms`);
+//         const end = Date.now();
+// console.log(`Execution time: ${end - start} ms`);
     } catch (error) {
        
         res.json({
