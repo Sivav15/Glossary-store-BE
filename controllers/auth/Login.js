@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const  UserSchema  = require("../../models/userModel");
 
 const login = async (req, res) => {
-
+ 
     try {
         const start = Date.now();
         let { email, password } = req.body;
