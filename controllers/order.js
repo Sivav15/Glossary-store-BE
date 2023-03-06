@@ -86,11 +86,10 @@ const calling = async(id)=>{
 
 
 // method 2 
-var getData = fs1.readFileSync('controllers/data.json');  
+const getData = fs1.readFileSync('controllers/data.json');  
 const info = JSON.parse(getData);
-                console.log(info);
                 info.push({
-                   id : id || "sivanathan"
+                   id : id
                 })
 let setData = fs1.writeFileSync('controllers/data.json',JSON.stringify(info))
 // console.log(setData)
@@ -110,7 +109,7 @@ let setData = fs1.writeFileSync('controllers/data.json',JSON.stringify(info))
     //             .catch((err) => console.error('Failed to write file', err));
  
 }
-// calling()
+
 const deliveryArr = async()=>{   
     const date = new Date();
     let day = date.getDate();
@@ -166,7 +165,7 @@ const timer = new Timer(function() {
 module.exports = {order,yourOrders};
 
 
-// deliveryArr()
+
 
 
 
