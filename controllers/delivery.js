@@ -1,14 +1,17 @@
 const { log } = require("console");
 const fs1 = require("fs");
 const orderSchema = require("../models/orderModal");
+const { sendInvoice } = require("./sendMail");
 
 
 
 const delivery = async()=>{  
     
-    for(let i = 0 ; i < 10000 ; i++){
-console.log(i);
-    }
+//     for(let i = 0 ; i < 100 ; i++){
+// setTimeout(()=>{
+// console.log(i)
+// },1000)
+    // }
 
     const date = new Date();
     let day = date.getDate();
@@ -46,6 +49,8 @@ console.log(i);
 
        }
    })
+
+   console.log("interval stop");
 }
 
 
