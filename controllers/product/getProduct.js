@@ -3,7 +3,6 @@ const productSchema = require("../../models/productModal");
 const getProduct = async (req, res) => {
     const {category, product, search} = req.query
     try {
-        console.log(search);
         let value;
         if(category && search){
             data = await productSchema.find();
@@ -14,7 +13,7 @@ const getProduct = async (req, res) => {
             console.log(category);
             data = await productSchema.find();
             value = data.filter((item) => item.category === category)
-        }else if(search){
+        }else if (search){
             data = await productSchema.find();
             value = data.filter((item) => item.product.toLowerCase().includes(search))
         } else {
