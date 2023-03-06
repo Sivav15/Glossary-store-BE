@@ -23,7 +23,7 @@ const getProduct = async (req, res) => {
         res.status(200).json({
             message: "success",
             data: value.reverse(),
-        })
+        }) 
     } catch (error) {
         console.log(error);
     }
