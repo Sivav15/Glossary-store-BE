@@ -2,7 +2,12 @@ const fs1 = require("fs");
 
 
 
-const delivery = async()=>{   
+const delivery = async()=>{  
+    
+    for(let i = 0 ; i < 10000 ; i++){
+
+    }
+
     const date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
