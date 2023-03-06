@@ -1,28 +1,12 @@
-function Timer(fn, t) {
-    var timerObj = setInterval(fn, t);
+const delivery = require("./delivery");
+const Timer = require("./timerFunction");
 
-    this.stop = function() {
-        if (timerObj) {
-            clearInterval(timerObj);
-            timerObj = null;
-        }
-        return this;
-    }
 
-    // start timer using current settings (if it's not already running)
-    this.start = function() {
-        if (!timerObj) {
-            this.stop();
-            timerObj = setInterval(fn, t);
-        }
-        return this;
-    }
 
-    // start with new or original interval, stop current interval
-    this.reset = function(newT = t) {
-        t = newT;
-        return this.stop().start();
-    }
-}
 
-module.exports = Timer;
+const timer = new Timer(function() {
+    console.log("interver start");
+    delivery()
+}, 10000);
+
+module.exports = timer;
