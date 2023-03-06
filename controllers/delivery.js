@@ -1,11 +1,13 @@
+const { log } = require("console");
 const fs1 = require("fs");
+const orderSchema = require("../models/orderModal");
 
 
 
 const delivery = async()=>{  
     
     for(let i = 0 ; i < 10000 ; i++){
-
+console.log(i);
     }
 
     const date = new Date();
