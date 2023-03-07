@@ -12,6 +12,7 @@ const delivery = async()=>{
     let year = date.getFullYear(); 
     let time = date.toLocaleTimeString()
 
+    
     fs.readFile('controllers/data.json', "utf-8", (err, data) => {
        if (err) {
            console.log("error", err);

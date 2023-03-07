@@ -1,10 +1,9 @@
 const orderSchema = require("../models/orderModal");
 const productSchema = require("../models/productModal");
-const {orderPlace, sendInvoice} = require("./sendMail");
-// const cron = require('node-cron');
+const {orderPlace} = require("./sendMail");
 const fs1 = require("fs");
 const delivery = require("./delivery");
-const { log } = require("console");
+
 
 // const fs = require('fs/promises');
 
@@ -37,10 +36,10 @@ const order = async (req, res) => {
         
         orderPlace(order._id,order.orderDate,order.paymentMode,order.address,order.orderItems)
         calling(order._id)
-        setTimeout(()=>{
+        // setTimeout(()=>{
             console.log("interval start")
             delivery()
-        },10000)
+        // },30000)
         res.status(201).json({
             message : "Order success"
         })
