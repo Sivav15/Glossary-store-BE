@@ -3,7 +3,6 @@ const productSchema = require("../../models/productModal");
 const getProduct = async (req, res) => {
     const {category, search} = req.query
     try {
-        const start = Date.now();
         let value;
 
         if(search){
@@ -24,8 +23,6 @@ const getProduct = async (req, res) => {
             message: "success",
             data: value.reverse(),
         }) 
-        const end = Date.now();
-        console.log(`Execution time: ${end - start} ms`);
     } catch (error) {
         console.log(error);
     }
