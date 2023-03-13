@@ -1,8 +1,7 @@
 const orderSchema = require("../models/orderModal");
 const productSchema = require("../models/productModal");
-const {orderPlace} = require("./sendMail");
-const fs1 = require("fs");
-const delivery = require("./delivery");
+// const fs1 = require("fs");
+
 
 
 // const fs = require('fs/promises');
@@ -25,21 +24,15 @@ const order = async (req, res) => {
         // console.log(date.toLocaleString());
         req.body.orderDate = `${day}/${month}/${year},${time}`
         // req.body.deliveryTime = `${day + 1}/${month}/${year},${time}`
+        req.body.isdelivery = true;
+        req.body.deliveryTime = `${day}/${month}/${year},${time}`;
         let order = await orderSchema.create(req.body)
         for await (const data of orderItems) {
             let query = data._id;
             const doc = await productSchema.findById(query);
             doc.sold = doc.sold + data.dummyQuantity;
             doc.availableInStock = doc.availableInStock - data.dummyQuantity;
-            await doc.save();
         }
-        
-        orderPlace(order._id,order.orderDate,order.paymentMode,order.address,order.orderItems)
-        calling(order._id)
-        // setTimeout(()=>{
-            console.log("interval start")
-            delivery()
-        // },30000)
         res.status(201).json({
             message : "Order success"
         })
@@ -61,15 +54,6 @@ const yourOrders = async (req, res)=>{
     })
 }
 
-
-const calling = async(id)=>{
-const getData = fs1.readFileSync('controllers/data.json');  
-const info = JSON.parse(getData);
-                info.push({
-                   id : id
-                })
- fs1.writeFileSync('controllers/data.json',JSON.stringify(info))
-}
 module.exports = {order,yourOrders};
 
 
