@@ -9,15 +9,10 @@ const dashboardRoute = require("./routers/dashboardRoute")
 const authRoute = require('./routers/authRoute');
 const userRoute = require('./routers/userRoute');
 const orderRoute = require('./routers/orderRoute');
-
-
-
-
-
 const fileUpload = require('express-fileupload');
 
 
-var app = express()
+const app = express()
 
 // // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
