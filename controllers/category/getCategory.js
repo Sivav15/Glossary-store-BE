@@ -7,7 +7,7 @@ const getCategory = async (req, res) => {
         if (q) {
             data = await CategorySchema.find();
             const keys = ["category"]
-            value = data.filter((item) => keys.some((key) => item[key].toLowerCase().includes(q)))
+            value = data.filter((item) => keys.some((key) => item[key].toLowerCase().startsWith(q)))
         } else {
             value = await CategorySchema.find();
         }
