@@ -24,39 +24,39 @@ const dashboardOverview = async (req, res) => {
 }
 
 
-const dashboardProduct = async(req, res)=>{
-try {
-    const {product,stock} = req.query
-    console.log(product);
+const dashboardProduct = async (req, res) => {
+    try {
+        const { product, stock } = req.query
 
-    let value;
-    if(product){
-        const data = await productSchema.find();
-        value = data.filter((item) => item.product.toLowerCase().includes(product))
-    }else if(stock){
-        console.log(stock);
-        const data = await productSchema.find();
-         value = data.filter((item) => item.availableInStock <= stock)
-         console.log(value);
-    }
-    else{
-         value = await productSchema.find();
-    }
-    let data = value.map((item,index)=>{
-return{
-    product : item.product,
-    bought : item.quantity,
-    sold : item.sold,
-    availableInStock : item.availableInStock, 
-}
-    })
+        let value;
+        const dBData = await productSchema.find();
+        if (product && stock) {
+            pro = dBData.filter((item) => item.product.toLowerCase().startsWith(product.toLowerCase()))
+            value = pro.filter((item) => item.availableInStock <= stock)
+        }
+        else if (product) {
+            value = dBData.filter((item) => item.product.toLowerCase().startsWith(product.toLowerCase()))
+        } else if (stock) {
+            value = dBData.filter((item) => item.availableInStock <= stock)
+        }
+        else {
+            value = dBData;
+        }
+        let data = value.map((item, index) => {
+            return {
+                product: item.product,
+                bought: item.quantity,
+                sold: item.sold,
+                availableInStock: item.availableInStock,
+            }
+        })
 
-    res.status(200).json(data);
-} catch (error) {
-    res.status(500).json({
-        message: "Server Side Error",
-    });
-}
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({
+            message: "Server Side Error",
+        });
+    }
 }
 
 
@@ -66,7 +66,7 @@ const user = async(req,res)=>{
         let value;
         if(user){
             let us = await UserSchema.find();
-            value = us.filter((item) => item.name.toLowerCase().includes(user))
+            value = us.filter((item) => item.name.toLowerCase().startsWith(user.toLowerCase()))
         }else{
              value = await UserSchema.find();
         }

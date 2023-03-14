@@ -32,6 +32,7 @@ const order = async (req, res) => {
             const doc = await productSchema.findById(query);
             doc.sold = doc.sold + data.dummyQuantity;
             doc.availableInStock = doc.availableInStock - data.dummyQuantity;
+            await doc.save();
         }
         res.status(201).json({
             message : "Order success"

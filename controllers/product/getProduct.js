@@ -2,7 +2,6 @@ const productSchema = require("../../models/productModal");
 
 const getProduct = async (req, res) => {
     const {category, search} = req.query
-    console.log(search);
     try {
         let value;
         let data = await productSchema.find();
