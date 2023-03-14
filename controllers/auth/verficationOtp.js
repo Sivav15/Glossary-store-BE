@@ -4,6 +4,15 @@ const register = require("./register");
 
 const verificationOtp = async(req,res)=>{
  try {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+res.header(
+      "Access-Control-Allow-Methods",
+      "GET, PATCH, PUT, POST, DELETE, OPTIONS"
+    );
     const {otp,data} = req.body;
     let email = data.email;
   
