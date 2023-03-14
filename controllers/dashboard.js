@@ -32,7 +32,7 @@ try {
     let value;
     if(product){
         const data = await productSchema.find();
-        value = data.filter((item) => item.product.toLowerCase().startsWith(product))
+        value = data.filter((item) => item.product.toLowerCase().includes(product))
     }else if(stock){
         console.log(stock);
         const data = await productSchema.find();
@@ -66,7 +66,7 @@ const user = async(req,res)=>{
         let value;
         if(user){
             let us = await UserSchema.find();
-            value = us.filter((item) => item.name.toLowerCase().startsWith(user))
+            value = us.filter((item) => item.name.toLowerCase().includes(user))
         }else{
              value = await UserSchema.find();
         }
