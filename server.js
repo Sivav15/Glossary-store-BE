@@ -41,9 +41,11 @@ dbConnection();
 
 
 
-
   app.get("/", async function (request, response) {
-    response.send("Server is Running Successfull");
+    response.status(200).json({
+      message : "Server is Running Successfull",
+      boolean : true
+    });
 });
 
 
